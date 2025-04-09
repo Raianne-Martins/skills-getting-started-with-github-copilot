@@ -85,7 +85,8 @@ def root():
 
 @app.get("/activities")
 def get_activities():
-    return activities
+    # Include participant emails in the response
+    return {name: {**details, "participants": details["participants"]} for name, details in activities.items()}
 
 
 @app.post("/activities/{activity_name}/signup")
